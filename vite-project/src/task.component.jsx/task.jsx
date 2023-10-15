@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-const Task = ({ isTaskBtn, taskClose }) => {
+
+const Task = ({ isTaskBtn, taskClose,clickHandler,title,setTitle }) => {
+
   return (
     <>
       <div className={`${isTaskBtn ? `task-overlay show` : `none`}`}>
@@ -11,7 +14,7 @@ const Task = ({ isTaskBtn, taskClose }) => {
           <div className="">
             <h1>ADD TODO</h1>
             <label htmlFor="title">Title</label> <br />
-            <input type="text" id="title" className="bg-white " /> <br />
+            <input type="text" id="title" value={title} onChange={(e)=>setTitle(e.target.value)} className="bg-white " /> <br />
             <label htmlFor="status">status</label> <br />
             <select id="status" className="pr-[5rem]">
               <option>All</option>
@@ -20,10 +23,10 @@ const Task = ({ isTaskBtn, taskClose }) => {
             </select>
           </div>
           <div className="flex gap-[1rem]">
-            <button className="bg-[dodgerblue] px-[1rem] py-[0.25rem] rounded-[5px] text-white text-[16px]">
+            <button className="bg-[dodgerblue] px-[1rem] py-[0.25rem] rounded-[5px] text-white text-[16px]" onClick={clickHandler}>
               Add Task
             </button>
-            <button className="bg-gray-400 px-[1rem] py-[0.25rem] rounded-[5px] text-white text-[16px]">
+            <button className="bg-gray-400 px-[1rem] py-[0.25rem] rounded-[5px] text-white text-[16px]" onClick={taskClose}>
               cancel
             </button>
           </div>

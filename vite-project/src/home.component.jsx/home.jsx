@@ -1,4 +1,8 @@
-const Home = ({ taskOpen }) => {
+import { useState } from "react";
+import { AiTwotoneEdit } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
+
+const Home = ({ taskOpen, list, deleteBtn }) => {
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-slate-100 ">
       <h1 className="text-[32px] font-semibold ">TODO LIST</h1>
@@ -21,9 +25,20 @@ const Home = ({ taskOpen }) => {
           <option>InComplete</option>
         </select>
       </div>
-      <ul className="bg-slate-300 px-[15rem] py-[1rem] mt-[2rem] ">
-        <li className="text-[22px] font-bold">hi</li>
-      </ul>
+      <div className="bg-slate-300 px-[8rem] py-[1rem] mt-[2rem]">
+        <ul>
+          {list.length ? (
+            list.map((item) => (
+              <li className="text-[20px] font-[700] flex items-center gap-[5rem]" key={item.id}>
+                {item.title}
+                <BsTrash className="cursor-pointer" onClick={()=>deleteBtn(item.id)} />
+              </li>
+            ))
+          ) : (
+            <h2 className="text-[20px] font-[700]">Add Todo</h2>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };
